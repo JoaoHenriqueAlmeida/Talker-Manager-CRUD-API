@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+// Iniciando o projeto;
+
 const app = express();
 app.use(bodyParser.json());
 
