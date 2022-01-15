@@ -1,5 +1,6 @@
 const validate = require('../utilities/emaiValidation');
 const generateToken = require('../utilities/tokenGenerator');
+  // Consultei o código do colega Rodolfo Braga nesse requisito https://github.com/tryber/sd-014-b-project-talker-manager/pull/42/commits/c837b757bb61a50111710fec7f8e823b0959ac7f
 
 const login = (req, res) => {
   const { email, password } = req.body;
