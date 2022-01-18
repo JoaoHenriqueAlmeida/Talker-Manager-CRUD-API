@@ -12,6 +12,7 @@ const addTalker = (req, res) => {
     talk,
   };
   fs.writeFileSync('./talker.json', JSON.stringify([newTalker]));
+
   res.status(201).json(newTalker);
 };
 
