@@ -3,8 +3,11 @@ const bodyParser = require('body-parser');
 const talkers = require('./middlewares/talkerMiddleware');
 const talkerById = require('./middlewares/idMiddleware');
 const login = require('./middlewares/loginMiddleware');
-
-// Iniciando o projeto;
+const addTalker = require('./middlewares/addTalkerMiddleware');
+const tokenValidation = require('./middlewares/tokenValidation');
+const nameValidation = require('./middlewares/nameValidation');
+const ageValidation = require('./middlewares/ageValidation');
+const talkValidation = require('./middlewares/talkValidation');
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,7 +16,14 @@ const HTTP_OK_STATUS = 200;
 const PORT = '3000';
 
 app.route('/talker')
-  .get(talkers);
+  .get(talkers)
+  .post(
+    tokenValidation, 
+    nameValidation, 
+    ageValidation, 
+    talkValidation, 
+    addTalker,
+  );
 
 app.route('/talker/:id')
   .get(talkerById);
