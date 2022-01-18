@@ -6,7 +6,7 @@ const addTalker = (req, res) => {
   const currentTalkers = Object.values(JSON.parse(fs.readFileSync('./talker.json')));
   
   const newTalker = {
-    id: (currentTalkers[currentTalkers.length - 1]).id + 1,
+    id: (currentTalkers.length + 1),
     name,
     age,
     talk,
