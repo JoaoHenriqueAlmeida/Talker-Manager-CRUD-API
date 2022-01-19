@@ -9,6 +9,7 @@ const nameValidation = require('./middlewares/nameValidation');
 const ageValidation = require('./middlewares/ageValidation');
 const talkValidation = require('./middlewares/talkValidation');
 const editTalker = require('./middlewares/editTalkerMiddleware');
+const deleteTalker = require('./middlewares/deleteTalkerMiddleware');
 
 const app = express();
 app.use(bodyParser.json());
@@ -34,6 +35,10 @@ app.route('/talker/:id')
     ageValidation, 
     talkValidation, 
     editTalker,
+  )
+  .delete(
+    tokenValidation,
+    deleteTalker,
   );
 
 app.route('/login')
