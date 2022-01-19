@@ -10,6 +10,7 @@ const ageValidation = require('./middlewares/ageValidation');
 const talkValidation = require('./middlewares/talkValidation');
 const editTalker = require('./middlewares/editTalkerMiddleware');
 const deleteTalker = require('./middlewares/deleteTalkerMiddleware');
+const searchTalkers = require('./middlewares/searchTalkersMiddleware');
 
 const app = express();
 app.use(bodyParser.json());
@@ -17,15 +18,11 @@ app.use(bodyParser.json());
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
 
-app.route('/talker')
-  .get(talkers)
-  .post(
-    tokenValidation, 
-    nameValidation, 
-    ageValidation, 
-    talkValidation, 
-    addTalker,
-  );
+app.route('/talker/search')
+.get(
+  tokenValidation,
+  searchTalkers,
+);
 
 app.route('/talker/:id')
   .get(talkerById)
@@ -39,6 +36,16 @@ app.route('/talker/:id')
   .delete(
     tokenValidation,
     deleteTalker,
+  );
+
+app.route('/talker')
+  .get(talkers)
+  .post(
+    tokenValidation, 
+    nameValidation, 
+    ageValidation, 
+    talkValidation, 
+    addTalker,
   );
 
 app.route('/login')

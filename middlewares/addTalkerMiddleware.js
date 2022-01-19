@@ -3,7 +3,7 @@ const fs = require('fs');
 const addTalker = (req, res) => {
   const { name, age, talk } = req.body;
   
-  const currentTalkers = Object.values(JSON.parse(fs.readFileSync('./talker.json')));
+  const currentTalkers = JSON.parse(fs.readFileSync('./talker.json'));
   
   const newTalker = {
     id: (currentTalkers.length + 1),
@@ -11,7 +11,7 @@ const addTalker = (req, res) => {
     age,
     talk,
   };
-  fs.writeFileSync('./talker.json', JSON.stringify([newTalker]));
+  fs.writeFileSync('./talker.json', JSON.stringify([...currentTalkers, newTalker]));
 
   res.status(201).json(newTalker);
 };
